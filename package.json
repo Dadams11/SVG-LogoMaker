@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "script.js",
+  "type": "module", 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^9.2.7",
+    "readline-sync": "^1.4.10",
+    "svg-builder": "^2.0.0"
+  }
 }
