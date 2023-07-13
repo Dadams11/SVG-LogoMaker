@@ -1,17 +1,68 @@
 import inquirer from 'inquirer';
 import fs from 'fs';
 
+// Base Shape class
+class Shape {
+  constructor(color) {
+    this.color = color;
+  }
+
+  // The draw method should be overridden by the specific shape classes
+  draw() {
+    return '';
+  }
+}
+
+// Circle class extends Shape
+class Circle extends Shape {
+  constructor(color) {
+    super(color);
+  }
+
+  draw() {
+    return `<circle cx="150" cy="100" r="50" fill="${this.color}" />`;
+  }
+}
+
+// Triangle class extends Shape
+class Triangle extends Shape {
+  constructor(color) {
+    super(color);
+  }
+
+  draw() {
+    return `<polygon points="150 50 100 150 200 150" fill="${this.color}" />`;
+  }
+}
+
+// Square class extends Shape
+class Square extends Shape {
+  constructor(color) {
+    super(color);
+  }
+
+  draw() {
+    return `<rect x="100" y="50" width="100" height="100" fill="${this.color}" />`;
+  }
+}
+
 // Function to generate the SVG file based on user inputs
 function generateLogo(text, textColor, shape, shapeColor) {
   let svg = '';
 
-  // Draw the shape
+  // Create the shape object based on user input
+  let shapeObj;
   if (shape === 'circle') {
-    svg += `<circle cx="150" cy="100" r="50" fill="${shapeColor}" />`;
+    shapeObj = new Circle(shapeColor);
   } else if (shape === 'triangle') {
-    svg += `<polygon points="150 50 100 150 200 150" fill="${shapeColor}" />`;
+    shapeObj = new Triangle(shapeColor);
   } else if (shape === 'square') {
-    svg += `<rect x="100" y="50" width="100" height="100" fill="${shapeColor}" />`;
+    shapeObj = new Square(shapeColor);
+  }
+
+  // Draw the shape
+  if (shapeObj) {
+    svg += shapeObj.draw();
   }
 
   // Add the text
@@ -30,6 +81,9 @@ inquirer
       type: 'input',
       name: 'text',
       message: 'Enter the text (up to 3 characters):',
+      validate: function (input) {
+        return input.length <= 3 ? true : 'Text should be up to 3 characters long.';
+      },
     },
     {
       type: 'input',
