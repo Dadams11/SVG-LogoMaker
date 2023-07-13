@@ -54,8 +54,18 @@ inquirer
     // Generate the SVG content
     const svgContent = generateLogo(text, textColor, shape, shapeColor);
 
-    // Write the SVG file in the examples folder
-    const filePath = './examples/logo.svg';
+    // Generate the unique file name
+    let fileCounter = 1;
+    let fileName = `logo_${fileCounter}.svg`;
+    let filePath = `./examples/${fileName}`;
+
+    while (fs.existsSync(filePath)) {
+      fileCounter++;
+      fileName = `logo_${fileCounter}.svg`;
+      filePath = `./examples/${fileName}`;
+    }
+
+    // Write the SVG file
     fs.writeFileSync(filePath, svgContent);
 
     console.log(`Generated ${filePath}`);
