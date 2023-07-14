@@ -1,14 +1,19 @@
 {
-  "name": "svg-logomaker",
+  "name": "svg-logo-maker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Week-10 Challenge",
   "main": "script.js",
-  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "start": "node script.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "inquirer": "^9.2.7",
+  "devDependencies": {
     "jest": "^29.6.1"
+  },
+  "dependencies": {
+    "inquirer": "^9.2.8"
   }
 }
